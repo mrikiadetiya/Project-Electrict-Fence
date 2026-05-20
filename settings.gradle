@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Electrict Fence"
+rootProject.name = "Electric Fence"
 include ':app'
