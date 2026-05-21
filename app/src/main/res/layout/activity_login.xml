@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_top_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,16 +26,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Enter credentials to access system"
-            android:textColor="@color/glass_white" />
+            android:textColor="@color/text_secondary" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:hint="Email Address"
-            android:textColorHint="@color/glass_white"
+            android:textColorHint="@color/text_secondary"
             app:boxStrokeColor="@color/neon_blue"
-            app:hintTextColor="@color/neon_blue">
+            app:hintTextColor="@color/neon_blue"
+            app:boxBackgroundColor="@color/card_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
@@ -50,11 +51,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Password"
-            android:textColorHint="@color/glass_white"
+            android:textColorHint="@color/text_secondary"
             app:boxStrokeColor="@color/neon_blue"
             app:hintTextColor="@color/neon_blue"
+            app:boxBackgroundColor="@color/card_bg"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/glass_white">
+            app:passwordToggleTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
@@ -70,7 +72,8 @@
             android:layout_height="56dp"
             android:layout_marginTop="32dp"
             android:text="AUTHENTICATE"
-            android:textColor="@color/black_bg"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:backgroundTint="@color/neon_blue"
             app:cornerRadius="12dp" />
 
@@ -81,7 +84,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:text="Request Access Credentials"
-            android:textColor="@color/neon_red"
+            android:textColor="@color/neon_blue"
             android:textStyle="bold" />
 
     </LinearLayout>

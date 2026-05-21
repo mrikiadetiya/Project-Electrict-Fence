@@ -8,45 +8,52 @@
     tools:context=".DashboardActivity">
 
     <!-- Header -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:padding="20dp"
-        app:layout_top_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/logo_container"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:cardBackgroundColor="@color/card_bg"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@android:drawable/ic_lock_idle_lock"
+                app:tint="@color/neon_blue" />
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/logo_container"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ELECTRIC FENCE"
-                android:textColor="@color/neon_blue"
-                android:textSize="14sp"
+                android:text="Electric Fence Monitor"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_device_id_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="System Dashboard"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:text="EF-001 • Online"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/btn_notifications"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="8dp"
-            android:src="@android:drawable/ic_popup_reminder"
-            app:tint="@color/neon_blue" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -58,15 +65,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="20dp">
 
-            <!-- Status Card -->
+            <!-- Main Status Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/dark_grey"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="8dp">
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,146 +87,330 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/tv_status_dot"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SYSTEM STATUS"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:text="● SISTEM AKTIF"
+                            android:textColor="@color/status_green"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:text="ACTIVE"
-                            android:textColor="@color/status_green"
-                            android:textStyle="bold" />
+                            android:text="EF-001"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
                     </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/tv_voltage_main"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="8,450 V"
-                        android:textColor="@color/neon_blue"
-                        android:textSize="48sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_voltage_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12.053"
+                            android:textColor="@color/status_green"
+                            android:textSize="56sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="12dp"
+                            android:layout_marginStart="4dp"
+                            android:text="V"
+                            android:textColor="@color/status_green"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tegangan Pagar Realtime"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_current"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Current: 1.2A"
-                            android:textColor="@color/white" />
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginHorizontal="15dp"
-                            android:background="@color/glass_white" />
+                            android:text="↯ 0.77A"
+                            android:textColor="@color/neon_blue"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_internet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Network: Online"
-                            android:textColor="@color/status_green" />
+                            android:layout_marginStart="20dp"
+                            android:text="🕒 0.1s on / 1.2s off"
+                            android:textColor="@color/text_secondary" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Control Switch -->
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_power"
+            <!-- Quick Stats Grid -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/glass_button_bg"
-                android:padding="20dp"
-                android:text="MASTER POWER CONTROL"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:thumb="@drawable/custom_switch_thumb"
-                app:track="@drawable/custom_switch_track" />
-
-            <!-- Grid Info -->
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:columnCount="2"
-                android:rowCount="2">
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
                 <!-- Battery -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/dark_grey"
-                    app:cardCornerRadius="12dp">
+                    android:layout_height="110dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="15dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Battery" android:textColor="@color/white" android:textSize="12sp"/>
-                        <TextView android:id="@+id/tv_battery" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="92%" android:textColor="@color/neon_blue" android:textSize="20sp" android:textStyle="bold"/>
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_lock_idle_low_battery" app:tint="@color/status_green"/>
+                        <TextView android:id="@+id/tv_battery" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="87%" android:textColor="@color/status_green" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baterai" android:textColor="@color/text_secondary" android:textSize="12sp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <!-- Inverter -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/dark_grey"
-                    app:cardCornerRadius="12dp">
+                    android:layout_height="110dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="15dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Inverter" android:textColor="@color/white" android:textSize="12sp"/>
-                        <TextView android:id="@+id/tv_inverter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Running" android:textColor="@color/status_green" android:textSize="20sp" android:textStyle="bold"/>
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_lock_power_off" app:tint="@color/neon_blue"/>
+                        <TextView android:id="@+id/tv_inverter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ON" android:textColor="@color/neon_blue" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Inverter" android:textColor="@color/text_secondary" android:textSize="12sp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-            </GridLayout>
 
-            <!-- Chart Placeholder -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="VOLTAGE GRAPH"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                <!-- Connection -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/stat_sys_phone_call" app:tint="@color/status_green"/>
+                        <TextView android:id="@+id/tv_internet" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4G" android:textColor="@color/status_green" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Koneksi" android:textColor="@color/text_secondary" android:textSize="12sp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
+            <!-- Graph Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/dark_grey"
-                app:cardCornerRadius="12dp">
-                <!-- In a real app, use MPAndroidChart here -->
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="↯ Grafik Tegangan Realtime"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btn_graph_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="Detail >"
+                            android:textColor="@color/neon_blue" />
+                    </RelativeLayout>
+
+                    <!-- Placeholder for Chart -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/glass_white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Location Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nav_gps_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/loc_icon_container"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardBackgroundColor="@color/black_bg"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:src="@android:drawable/ic_dialog_map"
+                            app:tint="@color/neon_blue" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@id/loc_icon_container"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lokasi Perangkat"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tv_coords_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-6.2088, 106.8456"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@android:drawable/ic_media_play"
+                        app:tint="@color/text_secondary" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Alerts Section -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="[ Real-time Chart ]"
-                    android:textColor="@color/glass_white" />
+                    android:text="⚠ Alert Terbaru"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/btn_all_alerts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Lihat Semua >"
+                    android:textColor="@color/neon_blue" />
+            </RelativeLayout>
+
+            <!-- Alert Item 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+                    <ImageView
+                        android:id="@+id/alert_icon_1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_dialog_alert"
+                        app:tint="@color/neon_red" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@id/alert_icon_1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tegangan turun ke 6800V"
+                            android:textColor="@color/white" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="45 menit yang lalu • Belum terselesaikan"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
+            <!-- Master Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/switch_power"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="30dp"
+                android:text="OFF MATIKAN PAGAR LISTRIK"
+                android:textColor="@color/neon_red"
+                android:textStyle="bold"
+                app:backgroundTint="@color/card_bg"
+                app:cornerRadius="20dp"
+                app:icon="@android:drawable/ic_lock_power_off"
+                app:iconGravity="textStart"
+                app:iconTint="@color/neon_red"
+                app:strokeColor="@color/neon_red"
+                app:strokeWidth="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="Sistem aktif • Sentuhan akan memicu pemadaman otomatis"
+                android:textColor="@color/text_secondary"
+                android:textSize="10sp" />
 
         </LinearLayout>
     </ScrollView>
@@ -227,46 +419,66 @@
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/dark_grey"
+        android:layout_height="70dp"
+        android:background="@color/black_bg"
+        android:elevation="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/nav_home"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="15dp"
-            android:src="@android:drawable/ic_menu_today"
-            app:tint="@color/neon_blue" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_today" app:tint="@color/neon_blue" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dashboard" android:textColor="@color/neon_blue" android:textSize="10sp"/>
+        </LinearLayout>
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/nav_voltage"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="15dp"
-            android:src="@android:drawable/ic_menu_sort_by_size"
-            app:tint="@color/white" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        </LinearLayout>
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/nav_gps"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="15dp"
-            android:src="@android:drawable/ic_dialog_map"
-            app:tint="@color/white" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_dialog_map" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="GPS" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        </LinearLayout>
 
-        <ImageView
+        <LinearLayout
+            android:id="@+id/btn_notifications"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_popup_reminder" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Notifikasi" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/nav_settings"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="15dp"
-            android:src="@android:drawable/ic_menu_preferences"
-            app:tint="@color/white" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_preferences" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengaturan" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black_bg">#0D0D0D</color>
-    <color name="neon_blue">#00E5FF</color>
-    <color name="neon_red">#FF1744</color>
-    <color name="dark_grey">#1A1A1A</color>
-    <color name="white">#FFFFFF</color>
+    <!-- Backgrounds -->
+    <color name="black_bg">#001220</color> <!-- Dark Blue Dominant -->
+    <color name="card_bg">#001E3C</color> <!-- Lighter Dark Blue -->
+    <color name="dark_grey">#002B5B</color>
+
+    <!-- UI Elements -->
+    <color name="neon_blue">#00A3FF</color> <!-- Primary Blue -->
+    <color name="white">#FFFFFF</color> <!-- White -->
+    <color name="text_secondary">#A0B3C1</color> <!-- Greyish Blue Text -->
+
+    <!-- Status Colors -->
+    <color name="status_green">#00E676</color>
+    <color name="neon_red">#FF5252</color>
+    <color name="neon_yellow">#FFD600</color>
+
+    <!-- Utilities -->
     <color name="glass_white">#1AFFFFFF</color>
-    <color name="status_green">#00C853</color>
 </resources>

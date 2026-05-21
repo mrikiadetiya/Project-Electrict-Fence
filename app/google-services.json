@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "760187258041",
+    "project_id": "electricfence-1487b",
+    "storage_bucket": "electricfence-1487b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760187258041:android:17718324b60cf3345f8768",
+        "android_client_info": {
+          "package_name": "com.example.electricfence"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB6SKslQk1B_EoaSpZvArrxETnZ6xtLYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

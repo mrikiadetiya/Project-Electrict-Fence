@@ -1,5 +1,6 @@
 package com.example.electricfence;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +24,6 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-        findViewById(R.id.btn_back_notif).setOnClickListener(v -> finish());
-
         rvNotifications = findViewById(R.id.rv_notifications);
         rvNotifications.setLayoutManager(new LinearLayoutManager(this));
         
@@ -32,7 +31,31 @@ public class NotificationActivity extends AppCompatActivity {
         adapter = new NotificationAdapter(notificationList);
         rvNotifications.setAdapter(adapter);
 
+        setupNavbar();
         loadNotifications();
+    }
+
+    private void setupNavbar() {
+        findViewById(R.id.nav_home).setOnClickListener(v -> {
+            startActivity(new Intent(this, DashboardActivity.class));
+            finish();
+        });
+        findViewById(R.id.nav_voltage).setOnClickListener(v -> {
+            startActivity(new Intent(this, VoltageActivity.class));
+            finish();
+        });
+        findViewById(R.id.nav_gps).setOnClickListener(v -> {
+            startActivity(new Intent(this, GPSActivity.class));
+            finish();
+        });
+        findViewById(R.id.nav_settings).setOnClickListener(v -> {
+            startActivity(new Intent(this, SettingsActivity.class));
+            finish();
+        });
+        // Stay on current page
+        findViewById(R.id.btn_notifications).setOnClickListener(v -> {
+            rvNotifications.smoothScrollToPosition(0);
+        });
     }
 
     private void loadNotifications() {
