@@ -42,9 +42,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@android:drawable/ic_lock_idle_lock"
-                app:tint="@color/neon_blue" />
+                android:padding="2dp"
+                android:src="@drawable/app_logo" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -58,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pengaturan Sistem"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -120,7 +119,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Admin Sistem"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                         <TextView
@@ -166,7 +165,7 @@
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
                         <ImageView android:id="@+id/icon_push" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_popup_reminder" app:tint="@color/text_secondary" />
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="15dp" android:layout_toEndOf="@id/icon_push" android:orientation="vertical">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Push Notification" android:textColor="@color/white" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Push Notification" android:textColor="@color/text_primary" android:textStyle="bold" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Terima alert realtime dari perangkat" android:textColor="@color/text_secondary" android:textSize="11sp" />
                         </LinearLayout>
                         <androidx.appcompat.widget.SwitchCompat android:id="@+id/switch_push" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:checked="true" />
@@ -176,7 +175,7 @@
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
                         <ImageView android:id="@+id/icon_sound" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_lock_silent_mode_off" app:tint="@color/text_secondary" />
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="15dp" android:layout_toEndOf="@id/icon_sound" android:orientation="vertical">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suara Alert" android:textColor="@color/white" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suara Alert" android:textColor="@color/text_primary" android:textStyle="bold" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mainkan suara saat alert bahaya" android:textColor="@color/text_secondary" android:textSize="11sp" />
                         </LinearLayout>
                         <androidx.appcompat.widget.SwitchCompat android:id="@+id/switch_sound" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:checked="true" />
@@ -186,7 +185,7 @@
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
                         <ImageView android:id="@+id/icon_vibrate" android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/stat_sys_phone_call" app:tint="@color/text_secondary" />
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="15dp" android:layout_toEndOf="@id/icon_vibrate" android:orientation="vertical">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Getar" android:textColor="@color/white" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Getar" android:textColor="@color/text_primary" android:textStyle="bold" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vibrate saat alert penting" android:textColor="@color/text_secondary" android:textSize="11sp" />
                         </LinearLayout>
                         <androidx.appcompat.widget.SwitchCompat android:id="@+id/switch_vibrate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:checked="true" />
@@ -216,17 +215,17 @@
                         android:textStyle="bold" />
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan Minimum" android:textColor="@color/white" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan Minimum" android:textColor="@color/text_primary" android:textStyle="bold" />
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="7.000 V" android:textColor="@color/neon_red" android:textStyle="bold" />
                     </RelativeLayout>
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baterai Minimum" android:textColor="@color/white" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baterai Minimum" android:textColor="@color/text_primary" android:textStyle="bold" />
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="20%" android:textColor="@color/neon_yellow" android:textStyle="bold" />
                     </RelativeLayout>
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sentuhan Threshold" android:textColor="@color/white" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sentuhan Threshold" android:textColor="@color/text_primary" android:textStyle="bold" />
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="3x / 10 menit" android:textColor="@color/neon_red" android:textStyle="bold" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -255,31 +254,31 @@
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ID Perangkat" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="EF-001" android:textColor="@color/white" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="EF-001" android:textColor="@color/text_primary" />
                     </RelativeLayout>
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="10dp" />
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mikrokontroler" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="ESP32-S3" android:textColor="@color/white" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="ESP32-S3" android:textColor="@color/text_primary" />
                     </RelativeLayout>
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="10dp" />
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Modul LTE" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="SIM7600 4G" android:textColor="@color/white" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="SIM7600 4G" android:textColor="@color/text_primary" />
                     </RelativeLayout>
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="10dp" />
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Versi Firmware" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="v2.4.1" android:textColor="@color/white" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="v2.4.1" android:textColor="@color/text_primary" />
                     </RelativeLayout>
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="10dp" />
 
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Versi Aplikasi" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="v1.0.0" android:textColor="@color/white" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="v1.0.0" android:textColor="@color/text_primary" />
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

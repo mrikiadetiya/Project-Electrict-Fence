@@ -25,9 +25,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@android:drawable/ic_lock_idle_lock"
-                app:tint="@color/neon_blue" />
+                android:padding="2dp"
+                android:src="@drawable/app_logo" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -40,8 +39,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Electric Fence Monitor"
-                android:textColor="@color/white"
+                android:text="INSTA PRESISI Monitor"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -250,7 +249,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="↯ Grafik Tegangan Realtime"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textStyle="bold" />
                         <TextView
                             android:id="@+id/btn_graph_detail"
@@ -307,7 +306,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lokasi Perangkat"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textStyle="bold" />
                         <TextView
                             android:id="@+id/tv_coords_main"
@@ -336,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="⚠ Alert Terbaru"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/btn_all_alerts"
@@ -375,7 +374,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tegangan turun ke 6800V"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/text_primary" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

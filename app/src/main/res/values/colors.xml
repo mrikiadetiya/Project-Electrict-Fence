@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Backgrounds -->
-    <color name="black_bg">#001220</color> <!-- Dark Blue Dominant -->
-    <color name="card_bg">#001E3C</color> <!-- Lighter Dark Blue -->
-    <color name="dark_grey">#002B5B</color>
+    <color name="black_bg">#FFFFFF</color> <!-- Pure White Background -->
+    <color name="card_bg">#F1F5F9</color> <!-- Light Slate Card Background -->
+    <color name="dark_grey">#E2E8F0</color> <!-- Separator Lines -->
 
     <!-- UI Elements -->
-    <color name="neon_blue">#00A3FF</color> <!-- Primary Blue -->
-    <color name="white">#FFFFFF</color> <!-- White -->
-    <color name="text_secondary">#A0B3C1</color> <!-- Greyish Blue Text -->
+    <color name="neon_blue">#4A6EF5</color> <!-- Vibrant Cobalt Blue -->
+    <color name="white">#FFFFFF</color> <!-- Keep Actual White for button texts/badges -->
+    <color name="text_primary">#0F172A</color> <!-- Dark Slate Primary Text -->
+    <color name="text_secondary">#64748B</color> <!-- Cool Grey Secondary Text -->
 
     <!-- Status Colors -->
-    <color name="status_green">#00E676</color>
-    <color name="neon_red">#FF5252</color>
-    <color name="neon_yellow">#FFD600</color>
+    <color name="status_green">#19C7A0</color> <!-- Vibrant Mint Green -->
+    <color name="neon_red">#E53935</color>
+    <color name="neon_yellow">#FBC02D</color>
 
     <!-- Utilities -->
-    <color name="glass_white">#1AFFFFFF</color>
+    <color name="glass_white">#0D0F172A</color> <!-- Light Slate Overlay -->
 </resources>
