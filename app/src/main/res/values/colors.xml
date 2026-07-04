@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Backgrounds -->
-    <color name="black_bg">#FFFFFF</color> <!-- Pure White Background -->
-    <color name="card_bg">#F1F5F9</color> <!-- Light Slate Card Background -->
+    <color name="black_bg">#F8FAFC</color> <!-- Very Light Slate App Background -->
+    <color name="card_bg">#FFFFFF</color> <!-- Pure White Card Background -->
     <color name="dark_grey">#E2E8F0</color> <!-- Separator Lines -->
 
     <!-- UI Elements -->
-    <color name="neon_blue">#4A6EF5</color> <!-- Vibrant Cobalt Blue -->
+    <color name="neon_blue">#0D47A1</color> <!-- Deep Royal Blue (Logo) -->
     <color name="white">#FFFFFF</color> <!-- Keep Actual White for button texts/badges -->
-    <color name="text_primary">#0F172A</color> <!-- Dark Slate Primary Text -->
+    <color name="text_primary">#1E293B</color> <!-- Dark Slate Primary Text -->
     <color name="text_secondary">#64748B</color> <!-- Cool Grey Secondary Text -->
 
     <!-- Status Colors -->
-    <color name="status_green">#19C7A0</color> <!-- Vibrant Mint Green -->
-    <color name="neon_red">#E53935</color>
-    <color name="neon_yellow">#FBC02D</color>
+    <color name="status_green">#2E7D32</color> <!-- Deep Forest Green (Logo) -->
+    <color name="neon_red">#EF4444</color>
+    <color name="neon_yellow">#E65100</color> <!-- Palm Fruit Orange (Logo) -->
 
     <!-- Utilities -->
     <color name="glass_white">#0D0F172A</color> <!-- Light Slate Overlay -->
