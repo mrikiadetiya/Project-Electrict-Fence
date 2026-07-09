@@ -231,6 +231,82 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- SIM7600 Status Section -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📶 STATUS SIM7600"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Status SIM" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_sim7600_status"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="-"
+                            android:textColor="@color/text_secondary" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:background="@color/glass_white" android:layout_marginVertical="10dp" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="CSQ (Sinyal)" android:textColor="@color/text_secondary" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true" android:orientation="horizontal">
+                            <TextView android:id="@+id/tv_sim7600_csq"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textColor="@color/neon_blue" android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text=" · "
+                                android:textColor="@color/text_secondary" />
+                            <TextView android:id="@+id/tv_sim7600_csq_label"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textStyle="bold" android:textColor="@color/text_secondary" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:background="@color/glass_white" android:layout_marginVertical="10dp" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Last Response" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_sim7600_last_response"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_toEndOf="@android:id/text1"
+                            android:text="-"
+                            android:maxWidth="180dp"
+                            android:maxLines="2"
+                            android:gravity="end"
+                            android:textColor="@color/text_primary" android:textSize="12sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Device Info Section -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -283,6 +359,64 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Notification Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_notification_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📨 NOTIFIKASI TERAKHIR"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Tipe" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_notif_type_settings"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="-"
+                            android:textColor="@color/neon_yellow" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:background="@color/glass_white" android:layout_marginVertical="10dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Pesan Terakhir" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_notif_msg_settings"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_toEndOf="@android:id/text1"
+                            android:text="-"
+                            android:maxWidth="200dp"
+                            android:maxLines="2"
+                            android:gravity="end"
+                            android:textColor="@color/text_primary" android:textSize="12sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Logout Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_logout"
@@ -308,7 +442,7 @@
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/black_bg"
+        android:background="@color/card_bg"
         android:elevation="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -332,7 +466,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/text_secondary" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Monitoring" android:textColor="@color/text_secondary" android:textSize="10sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -343,7 +477,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_dialog_map" app:tint="@color/text_secondary" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="GPS" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lokasi" android:textColor="@color/text_secondary" android:textSize="10sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -365,7 +499,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_preferences" app:tint="@color/neon_blue" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengaturan" android:textColor="@color/neon_blue" android:textSize="10sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sistem" android:textColor="@color/neon_blue" android:textSize="10sp"/>
         </LinearLayout>
     </LinearLayout>
 

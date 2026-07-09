@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElectricFence">
 
-        <!-- API Key for Google Maps -->
+        <!-- PENTING: Dapatkan Google Maps API Key dari https://console.cloud.google.com -->
+        <!-- Aktifkan: Maps SDK for Android, lalu restrict ke package name: com.example.electricfence -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE" />
@@ -37,7 +40,6 @@
         <activity android:name=".GPSActivity" android:exported="false" />
         <activity android:name=".NotificationActivity" android:exported="false" />
         <activity android:name=".SettingsActivity" android:exported="false" />
-        <activity android:name=".DeviceDetailActivity" android:exported="false" />
 
         <service
             android:name=".NotificationService"

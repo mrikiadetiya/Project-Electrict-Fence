@@ -30,41 +30,24 @@
                 app:tint="@color/text_secondary" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/logo_container"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@id/btn_back"
-            app:cardBackgroundColor="@color/card_bg"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:src="@drawable/app_logo" />
-        </androidx.cardview.widget.CardView>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_toEndOf="@id/logo_container"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/btn_back"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lacak Lokasi GPS"
+                android:text="Lokasi &amp; Anti Pencurian"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EF-001 • Online"
+                android:text="GPS · Home · TheftDetect"
                 android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -80,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="16dp"
             android:paddingBottom="20dp">
 
             <!-- Coordinates Card -->
@@ -100,31 +83,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📍 Koordinat GPS"
+                        android:text="📍 Koordinat GPS Perangkat"
                         android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
+                    <!-- Lat / Lng -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="14dp"
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginEnd="5dp"
+                            android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="@color/black_bg"
                             app:cardCornerRadius="12dp"
-                            app:cardElevation="4dp">
+                            app:cardElevation="2dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:padding="12dp">
-                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LATITUDE" android:textColor="@color/text_secondary" android:textSize="10sp"/>
-                                <TextView android:id="@+id/tv_lat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-6.208800" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="LATITUDE" android:textColor="@color/text_secondary" android:textSize="10sp" />
+                                <TextView android:id="@+id/tv_lat"
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="-"
+                                    android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold"
+                                    android:layout_marginTop="4dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -132,48 +122,68 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginStart="5dp"
+                            android:layout_marginStart="6dp"
                             app:cardBackgroundColor="@color/black_bg"
                             app:cardCornerRadius="12dp"
-                            app:cardElevation="4dp">
+                            app:cardElevation="2dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:padding="12dp">
-                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LONGITUDE" android:textColor="@color/text_secondary" android:textSize="10sp"/>
-                                <TextView android:id="@+id/tv_lng" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="106.845600" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="LONGITUDE" android:textColor="@color/text_secondary" android:textSize="10sp" />
+                                <TextView android:id="@+id/tv_lng"
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="-"
+                                    android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold"
+                                    android:layout_marginTop="4dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
+                    <!-- Satellite info -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Satelit Terhubung" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_satellite"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="- satelit"
+                            android:textColor="@color/neon_blue" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <!-- Action Buttons -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="16dp"
                         android:orientation="horizontal">
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_copy_coords"
                             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="50dp"
+                            android:layout_height="48dp"
                             android:layout_weight="1"
                             android:layout_marginEnd="5dp"
-                            android:text="Salin Koordinat"
+                            android:text="Salin"
                             android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             app:cornerRadius="12dp"
                             app:icon="@android:drawable/ic_menu_edit"
-                            app:iconSize="16dp"
+                            app:iconSize="14dp"
                             app:iconTint="@color/text_secondary"
                             app:strokeColor="@color/text_secondary" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_open_gmaps"
                             android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_weight="1"
+                            android:layout_height="48dp"
+                            android:layout_weight="2"
                             android:layout_marginStart="5dp"
                             android:text="Buka Google Maps"
                             android:textColor="@color/neon_blue"
@@ -181,10 +191,176 @@
                             app:backgroundTint="@color/black_bg"
                             app:cornerRadius="12dp"
                             app:icon="@android:drawable/ic_menu_send"
-                            app:iconSize="16dp"
+                            app:iconSize="14dp"
                             app:iconTint="@color/neon_blue"
                             app:strokeColor="@color/neon_blue"
                             app:strokeWidth="1dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Theft / Anti-Theft Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:id="@+id/layout_theft_warning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔒 Anti Pencurian Alat"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_theft_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="✓ Perangkat berada di lokasi aman"
+                        android:textColor="@color/status_green"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_theft_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Perangkat berpindah dari lokasi awal. Kemungkinan dicuri."
+                        android:textColor="@color/neon_red"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Home Location Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🏠 Lokasi Aman (Home)"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Status Home" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_home_set"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="✗ Belum diset"
+                            android:textColor="@color/neon_yellow" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:background="@color/glass_white" android:layout_marginVertical="10dp" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Home Latitude" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_home_lat"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="-"
+                            android:textColor="@color/text_primary" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:background="@color/glass_white" android:layout_marginVertical="10dp" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Home Longitude" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_home_lng"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="-"
+                            android:textColor="@color/text_primary" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:background="@color/glass_white" android:layout_marginVertical="10dp" />
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Jarak dari Home" android:textColor="@color/text_secondary" />
+                        <TextView android:id="@+id/tv_distance"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="- m"
+                            android:textColor="@color/neon_blue" android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <!-- Home Control Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_set_home"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:text="Set Lokasi Aman"
+                            android:textColor="@color/status_green"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/card_bg"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_myplaces"
+                            app:iconSize="14dp"
+                            app:iconTint="@color/status_green"
+                            app:strokeColor="@color/status_green"
+                            app:strokeWidth="1dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_reset_home"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:text="Reset Lokasi"
+                            android:textColor="@color/neon_red"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/card_bg"
+                            app:cornerRadius="12dp"
+                            app:icon="@android:drawable/ic_menu_delete"
+                            app:iconSize="14dp"
+                            app:iconTint="@color/neon_red"
+                            app:strokeColor="@color/neon_red"
+                            app:strokeWidth="1dp" />
+
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -193,7 +369,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="14dp"
                 app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="4dp">
@@ -208,7 +384,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🚀 Peta Lokasi Realtime"
+                            android:text="🗺 Peta Lokasi Realtime"
                             android:textColor="@color/text_primary"
                             android:textStyle="bold" />
                         <TextView
@@ -220,17 +396,31 @@
                             android:textSize="10sp" />
                     </RelativeLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:layout_marginTop="15dp"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp">
-                        <fragment
-                            android:id="@+id/map"
-                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_marginTop="14dp">
+
+                        <!-- Google Maps fragment (default) -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_gmaps"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp">
+                            <fragment
+                                android:id="@+id/map"
+                                android:name="com.google.android.gms.maps.SupportMapFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- WebView fallback (OpenStreetMap, tampil jika Maps API Key belum ada) -->
+                        <WebView
+                            android:id="@+id/webview_map_fallback"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_map_overlay"
@@ -242,66 +432,8 @@
                             android:textColor="@color/white"
                             android:textSize="10sp"
                             app:cornerRadius="8dp" />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- Device Info Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="INFORMASI LOKASI"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Perangkat ID" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="EF-001" android:textColor="@color/text_primary" />
-                    </RelativeLayout>
-
-                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="12dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Modul GPS" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="Aktif" android:textColor="@color/status_green" android:textStyle="bold" />
-                    </RelativeLayout>
-
-                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="12dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akurasi" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="± 3 meter" android:textColor="@color/text_primary" />
-                    </RelativeLayout>
-
-                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/glass_white" android:layout_marginVertical="12dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Update Terakhir" android:textColor="@color/text_secondary" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="22.34.10" android:textColor="@color/text_primary" />
-                    </RelativeLayout>
+                    </FrameLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -313,64 +445,54 @@
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/black_bg"
+        android:background="@color/card_bg"
         android:elevation="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
-            android:id="@+id/nav_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_today" app:tint="@color/text_secondary" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dashboard" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        <LinearLayout android:id="@+id/nav_home"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_today" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Dashboard" android:textColor="@color/text_secondary" android:textSize="10sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/nav_voltage"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/text_secondary" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        <LinearLayout android:id="@+id/nav_voltage"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Monitoring" android:textColor="@color/text_secondary" android:textSize="10sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/nav_gps"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_dialog_map" app:tint="@color/neon_blue" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="GPS" android:textColor="@color/neon_blue" android:textSize="10sp"/>
+        <LinearLayout android:id="@+id/nav_gps"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_dialog_map" app:tint="@color/neon_blue" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Lokasi" android:textColor="@color/neon_blue" android:textSize="10sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/btn_notifications"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_popup_reminder" app:tint="@color/text_secondary" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Notifikasi" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        <LinearLayout android:id="@+id/btn_notifications"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_popup_reminder" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Notifikasi" android:textColor="@color/text_secondary" android:textSize="10sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/nav_settings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_preferences" app:tint="@color/text_secondary" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengaturan" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+        <LinearLayout android:id="@+id/nav_settings"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_preferences" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Sistem" android:textColor="@color/text_secondary" android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
 
