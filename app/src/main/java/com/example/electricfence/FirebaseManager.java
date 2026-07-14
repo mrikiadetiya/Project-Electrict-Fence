@@ -78,11 +78,11 @@ public class FirebaseManager {
         rootRef.child("GPS").addValueEventListener(listener);
     }
 
-    // ===================== SIM7600 LISTEN =====================
+    // ===================== WIFI LISTEN =====================
 
-    /** Listen semua node SIM7600 */
-    public void listenToSIM7600(ValueEventListener listener) {
-        rootRef.child("SIM7600").addValueEventListener(listener);
+    /** Listen semua node WiFi (SSID, RSSI) */
+    public void listenToWifi(ValueEventListener listener) {
+        rootRef.child("WiFi").addValueEventListener(listener);
     }
 
     // ===================== NOTIFICATION LISTEN =====================

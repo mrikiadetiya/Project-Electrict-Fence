@@ -65,6 +65,21 @@ public class DashboardActivity extends AppCompatActivity {
         initViews();
         setupNavigation();
         observeFirebase();
+
+        // Request notification permission for Android 13+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
+
+        // Start the background monitoring service
+        Intent serviceIntent = new Intent(this, BackgroundMonitorService.class);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
     }
 
     private void initViews() {
@@ -129,27 +144,30 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void showRelayConfirmation(boolean targetState) {
-        String action = targetState ? "MENGAKTIFKAN" : "MEMATIKAN";
+        String action = targetState ? "MENGAKTIFKAN" : "MENONAKTIFKAN";
+        String consequence = targetState
+            ? "Output tegangan tinggi akan aktif. Pastikan area pagar aman sebelum mengaktifkan sistem."
+            : "Output tegangan tinggi akan dinonaktifkan. Sistem proteksi pagar akan berhenti beroperasi.";
         new AlertDialog.Builder(this)
-                .setTitle("Konfirmasi Keamanan")
-                .setMessage("Apakah Anda yakin ingin " + action + " relay/energizer pagar listrik?")
-                .setPositiveButton("Ya, Konfirmasi", (dialog, which) -> {
+                .setTitle(targetState ? "Konfirmasi Aktivasi Sistem" : "Konfirmasi Penonaktifan Sistem")
+                .setMessage("Anda akan " + action + " output energizer Sistem Pagar Listrik.\n\n" + consequence)
+                .setPositiveButton("Konfirmasi", (dialog, which) -> {
                     firebaseManager.setRelayControl(targetState);
-                    Toast.makeText(this, "Perintah " + action + " dikirim", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Perintah " + action + " sistem dikirim ke perangkat", Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Batal", null)
+                .setNegativeButton("Batalkan", null)
                 .show();
     }
 
     private void showResetEmergencyConfirmation() {
         new AlertDialog.Builder(this)
-                .setTitle("Reset Emergency Stop")
-                .setMessage("Reset Emergency Stop dan aktifkan kembali sistem pagar listrik?")
-                .setPositiveButton("Ya, Reset", (dialog, which) -> {
+                .setTitle("Reset Lockout Proteksi")
+                .setMessage("Sistem saat ini dalam kondisi LOCKOUT akibat gangguan berulang.\n\nMelakukan reset akan mengaktifkan kembali output tegangan tinggi. Pastikan kondisi pagar dan lingkungan telah aman sebelum melanjutkan.")
+                .setPositiveButton("Konfirmasi Reset", (dialog, which) -> {
                     firebaseManager.setResetEmergency(true);
-                    Toast.makeText(this, "Perintah Reset Emergency dikirim", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Perintah reset lockout dikirim ke perangkat", Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Batal", null)
+                .setNegativeButton("Batalkan", null)
                 .show();
     }
 
@@ -287,20 +305,20 @@ public class DashboardActivity extends AppCompatActivity {
     private void updateRelayUI(boolean isOn) {
         if (tvRelayStatus == null) return;
         if (isOn) {
-            tvRelayStatus.setText("ON");
+            tvRelayStatus.setText("AKTIF");
             tvRelayStatus.setTextColor(getColor(R.color.status_green));
-            tvStatusDot.setText("● RELAY AKTIF");
+            tvStatusDot.setText("● OUTPUT TEGANGAN TINGGI AKTIF");
             tvStatusDot.setTextColor(getColor(R.color.status_green));
-            btnPower.setText("MATIKAN RELAY / ENERGIZER");
+            btnPower.setText("NONAKTIFKAN SISTEM");
             btnPower.setTextColor(getColor(R.color.neon_red));
             btnPower.setStrokeColorResource(R.color.neon_red);
             btnPower.setIconTintResource(R.color.neon_red);
         } else {
-            tvRelayStatus.setText("OFF");
+            tvRelayStatus.setText("NONAKTIF");
             tvRelayStatus.setTextColor(getColor(R.color.text_secondary));
-            tvStatusDot.setText("○ RELAY NONAKTIF");
+            tvStatusDot.setText("○ OUTPUT TEGANGAN TINGGI NONAKTIF");
             tvStatusDot.setTextColor(getColor(R.color.text_secondary));
-            btnPower.setText("AKTIFKAN RELAY / ENERGIZER");
+            btnPower.setText("AKTIFKAN SISTEM");
             btnPower.setTextColor(getColor(R.color.status_green));
             btnPower.setStrokeColorResource(R.color.status_green);
             btnPower.setIconTintResource(R.color.status_green);
@@ -310,10 +328,10 @@ public class DashboardActivity extends AppCompatActivity {
     private void updateAlarmUI(boolean isActive) {
         if (tvAlarmStatus == null) return;
         if (isActive) {
-            tvAlarmStatus.setText("⚠ AKTIF");
+            tvAlarmStatus.setText("⚠ ALARM TERDETEKSI");
             tvAlarmStatus.setTextColor(getColor(R.color.neon_red));
         } else {
-            tvAlarmStatus.setText("✓ Normal");
+            tvAlarmStatus.setText("✓ Nominal");
             tvAlarmStatus.setTextColor(getColor(R.color.status_green));
         }
     }
@@ -321,10 +339,10 @@ public class DashboardActivity extends AppCompatActivity {
     private void updatePulseStatusUI(boolean lost, String pulseStatusStr) {
         if (tvPulseStatus == null) return;
         if (lost) {
-            tvPulseStatus.setText("✗ Hilang");
+            tvPulseStatus.setText("✗ Tidak Terdeteksi");
             tvPulseStatus.setTextColor(getColor(R.color.neon_red));
         } else {
-            String label = (pulseStatusStr != null && !pulseStatusStr.isEmpty()) ? pulseStatusStr : "Normal";
+            String label = (pulseStatusStr != null && !pulseStatusStr.isEmpty()) ? pulseStatusStr : "Nominal";
             tvPulseStatus.setText("✓ " + label);
             tvPulseStatus.setTextColor(getColor(R.color.status_green));
         }
@@ -338,10 +356,10 @@ public class DashboardActivity extends AppCompatActivity {
             return;
         }
         if (statusStr.toUpperCase().contains("TIDAK NORMAL")) {
-            tvCurrentStatus.setText("✗ Tidak Normal");
+            tvCurrentStatus.setText("✗ Arus Abnormal");
             tvCurrentStatus.setTextColor(getColor(R.color.neon_red));
         } else if (statusStr.equalsIgnoreCase("ENERGIZER OFF")) {
-            tvCurrentStatus.setText("○ Energizer OFF");
+            tvCurrentStatus.setText("○ Energizer Nonaktif");
             tvCurrentStatus.setTextColor(getColor(R.color.text_secondary));
         } else {
             tvCurrentStatus.setText("✓ " + statusStr);
@@ -382,10 +400,10 @@ public class DashboardActivity extends AppCompatActivity {
     private void updateContactUI(boolean detected) {
         if (tvContactDash == null) return;
         if (detected) {
-            tvContactDash.setText("⚠ Terdeteksi");
+            tvContactDash.setText("⚠ Gangguan Terdeteksi");
             tvContactDash.setTextColor(getColor(R.color.neon_red));
         } else {
-            tvContactDash.setText("✓ Aman");
+            tvContactDash.setText("✓ Kondisi Aman");
             tvContactDash.setTextColor(getColor(R.color.status_green));
         }
     }
@@ -403,10 +421,10 @@ public class DashboardActivity extends AppCompatActivity {
             return;
         }
         if (statusStr.equalsIgnoreCase("VALID")) {
-            tvGpsStatus.setText("✓ Valid");
+            tvGpsStatus.setText("✓ Fix Diperoleh");
             tvGpsStatus.setTextColor(getColor(R.color.status_green));
         } else {
-            tvGpsStatus.setText("✗ Belum Fix");
+            tvGpsStatus.setText("⚠ Menunggu Fix");
             tvGpsStatus.setTextColor(getColor(R.color.neon_yellow));
         }
     }
@@ -419,10 +437,10 @@ public class DashboardActivity extends AppCompatActivity {
             return;
         }
         if (statusStr.equalsIgnoreCase("TERHUBUNG")) {
-            tvSimStatus.setText("✓ Terhubung");
+            tvSimStatus.setText("✓ Jaringan Aktif");
             tvSimStatus.setTextColor(getColor(R.color.status_green));
         } else {
-            tvSimStatus.setText("✗ Tidak Ada Respon");
+            tvSimStatus.setText("✗ Koneksi Terputus");
             tvSimStatus.setTextColor(getColor(R.color.neon_red));
         }
     }
@@ -430,10 +448,10 @@ public class DashboardActivity extends AppCompatActivity {
     private void updateTheftStatusUI(boolean isTheft, String theftStatusStr) {
         if (tvTheftStatus == null) return;
         if (isTheft) {
-            tvTheftStatus.setText("⚠ DIDUGA DICURI");
+            tvTheftStatus.setText("🔒 LOKASI BERUBAH");
             tvTheftStatus.setTextColor(getColor(R.color.neon_red));
         } else {
-            tvTheftStatus.setText("✓ Aman");
+            tvTheftStatus.setText("✓ Posisi Normal");
             tvTheftStatus.setTextColor(getColor(R.color.status_green));
         }
     }
@@ -471,19 +489,19 @@ public class DashboardActivity extends AppCompatActivity {
         StringBuilder alertMsg = new StringBuilder();
 
         if (emergencyStop)
-            alertMsg.append("🚨 Emergency Stop aktif!\n");
+            alertMsg.append("🚨 SISTEM LOCKOUT — Perangkat memerlukan reset manual.\n");
         if (contactDetected)
-            alertMsg.append("⚠ Gangguan/kontak terdeteksi pada pagar.\n");
+            alertMsg.append("⚡ GANGGUAN TERDETEKSI — Kontak pada pagar aktif.\n");
         if (alarmActive)
-            alertMsg.append("⚠ Alarm internal energizer aktif!\n");
+            alertMsg.append("⚠ ALARM ENERGIZER — Kemungkinan gangguan pada output.\n");
         if (pulseLost)
-            alertMsg.append("⚠ Pulse output pagar hilang!\n");
+            alertMsg.append("⚠ PULSE HILANG — Output tegangan tinggi tidak terdeteksi.\n");
         if (theftDetected)
-            alertMsg.append("⚠ Perangkat diduga berpindah / dicuri!\n");
+            alertMsg.append("🔒 PERINGATAN LOKASI — Perangkat terdeteksi berpindah dari titik referensi.\n");
         if (currentStatus.toUpperCase().contains("TIDAK NORMAL"))
-            alertMsg.append("⚠ Arus tidak normal terdeteksi!\n");
+            alertMsg.append("⚠ ARUS ABNORMAL — Periksa kondisi energizer dan jalur kabel.\n");
         if (gpsStatus.equalsIgnoreCase("BELUM FIX"))
-            alertMsg.append("⚠ GPS belum mendapat fix sinyal!\n");
+            alertMsg.append("⚠ GPS BELUM FIX — Sinyal satelit belum mencukupi.\n");
 
         if (alertMsg.length() > 0) {
             tvAlertMessage.setText(alertMsg.toString().trim());

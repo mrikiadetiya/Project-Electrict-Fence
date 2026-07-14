@@ -22,8 +22,8 @@ public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "AppPrefs";
 
-    // SIM7600 views
-    private TextView tvSimStatus, tvSimCSQ, tvSimCSQLabel, tvSimLastResponse;
+    // WiFi views
+    private TextView tvWifiStatus, tvWifiSsid, tvWifiRssi, tvWifiRssiLabel;
 
     // Notification views
     private View cardNotificationSettings;
@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
         initViews();
         setupNavbar();
         loadSettings();
-        observeSIM7600();
+        observeWifi();
         observeNotification();
     }
 
@@ -60,11 +60,11 @@ public class SettingsActivity extends AppCompatActivity {
         if (switchSound != null) switchSound.setOnCheckedChangeListener((v, isChecked) -> saveSetting("sound", isChecked));
         if (switchVibrate != null) switchVibrate.setOnCheckedChangeListener((v, isChecked) -> saveSetting("vibrate", isChecked));
 
-        // SIM7600 views
-        tvSimStatus = findViewById(R.id.tv_sim7600_status);
-        tvSimCSQ = findViewById(R.id.tv_sim7600_csq);
-        tvSimCSQLabel = findViewById(R.id.tv_sim7600_csq_label);
-        tvSimLastResponse = findViewById(R.id.tv_sim7600_last_response);
+        // WiFi views
+        tvWifiStatus = findViewById(R.id.tv_wifi_status);
+        tvWifiSsid = findViewById(R.id.tv_wifi_ssid);
+        tvWifiRssi = findViewById(R.id.tv_wifi_rssi);
+        tvWifiRssiLabel = findViewById(R.id.tv_wifi_rssi_label);
 
         // Notification views
         cardNotificationSettings = findViewById(R.id.card_notification_settings);
@@ -94,15 +94,15 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void observeSIM7600() {
-        // Listen to Status for SIMStatus
+    private void observeWifi() {
+        // Listen to Status node for WiFi info
         FirebaseManager.getInstance().listenToStatus(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) return;
                 try {
-                    String simStatus = snapshot.child("SIMStatus").getValue(String.class);
-                    updateSimStatusUI(simStatus);
+                    String wifiStatus = snapshot.child("WiFiStatus").getValue(String.class);
+                    updateWifiStatusUI(wifiStatus);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -111,31 +111,29 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        // Listen to SIM7600 node for CSQ and LastResponse
-        FirebaseManager.getInstance().listenToSIM7600(new ValueEventListener() {
+        // Listen to WiFi node for SSID and RSSI
+        FirebaseManager.getInstance().listenToWifi(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) return;
                 try {
-                    Object csqObj = snapshot.child("CSQ").getValue();
-                    String lastResponse = snapshot.child("LastResponse").getValue(String.class);
+                    String ssid = snapshot.child("SSID").getValue(String.class);
+                    Object rssiObj = snapshot.child("RSSI").getValue();
 
-                    int csq = csqObj != null ? Integer.parseInt(csqObj.toString()) : -1;
-                    String csqLabel = ElectricFenceModel.getCSQLabel(csq);
+                    int rssi = rssiObj != null ? Integer.parseInt(rssiObj.toString()) : 0;
+                    String rssiLabel = getRssiLabel(rssi);
 
-                    if (tvSimCSQ != null)
-                        tvSimCSQ.setText(String.valueOf(csq));
-                    if (tvSimCSQLabel != null) {
-                        tvSimCSQLabel.setText(csqLabel);
-                        // Color based on quality
-                        if (csq > 20) tvSimCSQLabel.setTextColor(getColor(R.color.status_green));
-                        else if (csq >= 15) tvSimCSQLabel.setTextColor(getColor(R.color.status_green));
-                        else if (csq >= 10) tvSimCSQLabel.setTextColor(getColor(R.color.neon_yellow));
-                        else if (csq >= 0) tvSimCSQLabel.setTextColor(getColor(R.color.neon_red));
-                        else tvSimCSQLabel.setTextColor(getColor(R.color.text_secondary));
+                    if (tvWifiSsid != null)
+                        tvWifiSsid.setText(ssid != null && !ssid.isEmpty() ? ssid : "-");
+                    if (tvWifiRssi != null)
+                        tvWifiRssi.setText(rssi != 0 ? rssi + " dBm" : "-");
+                    if (tvWifiRssiLabel != null) {
+                        tvWifiRssiLabel.setText(rssiLabel);
+                        if (rssi >= -60) tvWifiRssiLabel.setTextColor(getColor(R.color.status_green));
+                        else if (rssi >= -70) tvWifiRssiLabel.setTextColor(getColor(R.color.neon_yellow));
+                        else if (rssi < -70) tvWifiRssiLabel.setTextColor(getColor(R.color.neon_red));
+                        else tvWifiRssiLabel.setTextColor(getColor(R.color.text_secondary));
                     }
-                    if (tvSimLastResponse != null)
-                        tvSimLastResponse.setText(lastResponse != null ? lastResponse : "-");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -144,6 +142,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
+    }
+
+    private String getRssiLabel(int rssi) {
+        if (rssi >= -60) return "Sangat Kuat";
+        else if (rssi >= -70) return "Baik";
+        else if (rssi >= -80) return "Lemah";
+        else if (rssi < -80) return "Sangat Lemah";
+        else return "-";
     }
 
     private void observeNotification() {
@@ -195,19 +201,19 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void updateSimStatusUI(String simStatus) {
-        if (tvSimStatus == null) return;
-        if (simStatus == null || simStatus.isEmpty()) {
-            tvSimStatus.setText("-");
-            tvSimStatus.setTextColor(getColor(R.color.text_secondary));
+    private void updateWifiStatusUI(String wifiStatus) {
+        if (tvWifiStatus == null) return;
+        if (wifiStatus == null || wifiStatus.isEmpty()) {
+            tvWifiStatus.setText("-");
+            tvWifiStatus.setTextColor(getColor(R.color.text_secondary));
             return;
         }
-        if (simStatus.equalsIgnoreCase("TERHUBUNG")) {
-            tvSimStatus.setText("✓ Terhubung");
-            tvSimStatus.setTextColor(getColor(R.color.status_green));
+        if (wifiStatus.equalsIgnoreCase("TERHUBUNG") || wifiStatus.equalsIgnoreCase("CONNECTED")) {
+            tvWifiStatus.setText("✓ Terhubung");
+            tvWifiStatus.setTextColor(getColor(R.color.status_green));
         } else {
-            tvSimStatus.setText("✗ Tidak Ada Respon");
-            tvSimStatus.setTextColor(getColor(R.color.neon_red));
+            tvWifiStatus.setText("✗ Tidak Terhubung");
+            tvWifiStatus.setTextColor(getColor(R.color.neon_red));
         }
     }
 

@@ -55,25 +55,32 @@ public class NotificationService extends FirebaseMessagingService {
         String title;
         switch (type.toUpperCase()) {
             case "CONTACT_DETECTED":
-                title = "⚠ Kontak Terdeteksi!";
+                title = "⚡ Gangguan Terdeteksi pada Pagar";
                 break;
             case "EMERGENCY_STOP":
-                title = "🚨 Emergency Stop Aktif!";
+                title = "🚨 Sistem Lockout — Reset Diperlukan";
                 break;
             case "THEFT_DETECTED":
-                title = "🔒 Perangkat Berpindah!";
+                title = "🔒 Peringatan Lokasi Perangkat";
                 break;
             case "AUTO_RESTART":
-                title = "🔄 Sistem Auto-Restart";
+                title = "🔄 Sistem Diaktifkan Kembali Otomatis";
                 break;
             case "ALARM_ACTIVE":
-                title = "⚡ Alarm Energizer Aktif";
+            case "ALARM_DETECTED":
+                title = "⚡ Alarm Energizer Terdeteksi";
                 break;
-            case "RETRY_LIMIT":
-                title = "⚠ Batas Percobaan Tercapai";
+            case "DANGER_LOCKOUT":
+                title = "🚨 Lockout Proteksi — Gangguan Berulang";
+                break;
+            case "PULSE_LOST":
+                title = "⚠ Pulse Output Tidak Terdeteksi";
+                break;
+            case "CONTINUOUS_CURRENT":
+                title = "⚠ Arus Terus-Menerus Terdeteksi";
                 break;
             default:
-                title = "Electric Fence: " + type.replace("_", " ");
+                title = "Sistem Pagar Listrik: " + type.replace("_", " ");
                 break;
         }
 

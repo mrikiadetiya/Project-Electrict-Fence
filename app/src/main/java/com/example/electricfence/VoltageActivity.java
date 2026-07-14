@@ -91,13 +91,13 @@ public class VoltageActivity extends AppCompatActivity {
         if (btnResetEmergencyVoltage != null) {
             btnResetEmergencyVoltage.setOnClickListener(v -> {
                 new AlertDialog.Builder(this)
-                        .setTitle("Reset Emergency Stop")
-                        .setMessage("Reset Emergency Stop dan aktifkan kembali sistem pagar listrik?")
-                        .setPositiveButton("Ya, Reset", (dialog, which) -> {
+                        .setTitle("Reset Lockout Proteksi")
+                        .setMessage("Sistem saat ini dalam kondisi LOCKOUT akibat gangguan berulang.\n\nMelakukan reset akan mengaktifkan kembali output tegangan tinggi. Pastikan kondisi pagar dan lingkungan telah aman sebelum melanjutkan.")
+                        .setPositiveButton("Konfirmasi Reset", (dialog, which) -> {
                             FirebaseManager.getInstance().setResetEmergency(true);
-                            Toast.makeText(this, "Perintah Reset Emergency dikirim", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Perintah reset lockout dikirim ke perangkat", Toast.LENGTH_SHORT).show();
                         })
-                        .setNegativeButton("Batal", null)
+                        .setNegativeButton("Batalkan", null)
                         .show();
             });
         }
@@ -232,15 +232,15 @@ public class VoltageActivity extends AppCompatActivity {
     private void updateCurrentStatusUI(String statusStr) {
         if (tvCurrentStatusVal == null) return;
         if (statusStr == null || statusStr.isEmpty()) {
-            tvCurrentStatusVal.setText("Belum ada data");
+            tvCurrentStatusVal.setText("Menunggu data...");
             tvCurrentStatusVal.setTextColor(getColor(R.color.text_secondary));
             return;
         }
         if (statusStr.toUpperCase().contains("TIDAK NORMAL")) {
-            tvCurrentStatusVal.setText("⚠ Arus Tidak Normal");
+            tvCurrentStatusVal.setText("⚠ Arus Abnormal");
             tvCurrentStatusVal.setTextColor(getColor(R.color.neon_red));
         } else if (statusStr.equalsIgnoreCase("ENERGIZER OFF")) {
-            tvCurrentStatusVal.setText("○ Energizer OFF");
+            tvCurrentStatusVal.setText("○ Energizer Nonaktif");
             tvCurrentStatusVal.setTextColor(getColor(R.color.text_secondary));
         } else {
             tvCurrentStatusVal.setText("✓ " + statusStr);
@@ -254,7 +254,7 @@ public class VoltageActivity extends AppCompatActivity {
             if (pulseLost) {
                 layoutPulseWarning.setVisibility(View.VISIBLE);
                 if (tvPulseWarningMsg != null)
-                    tvPulseWarningMsg.setText("Pulse output pagar hilang. Periksa koneksi energizer ke pagar.");
+                    tvPulseWarningMsg.setText("Pulse tegangan tinggi tidak terdeteksi. Periksa koneksi energizer, kabel pagar, dan sumber daya.");
             } else {
                 layoutPulseWarning.setVisibility(View.GONE);
             }
@@ -263,10 +263,10 @@ public class VoltageActivity extends AppCompatActivity {
         // Pulse status label
         if (tvPulseStatusVal != null) {
             if (pulseLost) {
-                tvPulseStatusVal.setText("✗ Hilang");
+                tvPulseStatusVal.setText("✗ Tidak Terdeteksi");
                 tvPulseStatusVal.setTextColor(getColor(R.color.neon_red));
             } else {
-                String label = (pulseStatus != null && !pulseStatus.isEmpty()) ? pulseStatus : "Normal";
+                String label = (pulseStatus != null && !pulseStatus.isEmpty()) ? pulseStatus : "Nominal";
                 tvPulseStatusVal.setText("✓ " + label);
                 tvPulseStatusVal.setTextColor(getColor(R.color.status_green));
             }
@@ -275,10 +275,10 @@ public class VoltageActivity extends AppCompatActivity {
         // PulseLost label
         if (tvPulseLostVal != null) {
             if (pulseLost) {
-                tvPulseLostVal.setText("⚠ Hilang");
+                tvPulseLostVal.setText("⚠ Tidak Terdeteksi");
                 tvPulseLostVal.setTextColor(getColor(R.color.neon_red));
             } else {
-                tvPulseLostVal.setText("✓ Normal");
+                tvPulseLostVal.setText("✓ Nominal");
                 tvPulseLostVal.setTextColor(getColor(R.color.status_green));
             }
         }
@@ -287,17 +287,17 @@ public class VoltageActivity extends AppCompatActivity {
     private void updateAlarmUI(boolean alarmActive) {
         if (tvAlarmVal == null) return;
         if (alarmActive) {
-            tvAlarmVal.setText("⚠ ALARM AKTIF");
+            tvAlarmVal.setText("⚠ ALARM TERDETEKSI");
             tvAlarmVal.setTextColor(getColor(R.color.neon_red));
             if (tvAlarmDetail != null) {
-                tvAlarmDetail.setText("Alarm internal energizer aktif. Kemungkinan terjadi gangguan pada pagar, ground, atau output energizer.");
+                tvAlarmDetail.setText("Alarm internal energizer aktif. Kondisi ini mengindikasikan gangguan pada pagar, sistem grounding, atau output energizer. Segera lakukan pemeriksaan lapangan.");
                 tvAlarmDetail.setVisibility(View.VISIBLE);
             }
             if (layoutAlarmCard != null) {
                 layoutAlarmCard.setBackgroundColor(0xFFFFECE8);
             }
         } else {
-            tvAlarmVal.setText("✓ Normal");
+            tvAlarmVal.setText("✓ Nominal");
             tvAlarmVal.setTextColor(getColor(R.color.status_green));
             if (tvAlarmDetail != null) {
                 tvAlarmDetail.setVisibility(View.GONE);
@@ -316,10 +316,10 @@ public class VoltageActivity extends AppCompatActivity {
         // Detail card
         if (tvContactDetectedVal != null) {
             if (contactDetected) {
-                tvContactDetectedVal.setText("⚠ Terdeteksi");
+                tvContactDetectedVal.setText("⚠ Gangguan Terdeteksi");
                 tvContactDetectedVal.setTextColor(getColor(R.color.neon_red));
             } else {
-                tvContactDetectedVal.setText("✓ Tidak ada");
+                tvContactDetectedVal.setText("✓ Kondisi Aman");
                 tvContactDetectedVal.setTextColor(getColor(R.color.status_green));
             }
         }
@@ -333,10 +333,10 @@ public class VoltageActivity extends AppCompatActivity {
         // Detail card
         if (tvEmergencyStopVal != null) {
             if (emergencyStop) {
-                tvEmergencyStopVal.setText("🚨 AKTIF");
+                tvEmergencyStopVal.setText("🚨 SISTEM LOCKOUT");
                 tvEmergencyStopVal.setTextColor(getColor(R.color.neon_red));
             } else {
-                tvEmergencyStopVal.setText("✓ Normal");
+                tvEmergencyStopVal.setText("✓ Nominal");
                 tvEmergencyStopVal.setTextColor(getColor(R.color.status_green));
             }
         }
