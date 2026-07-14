@@ -193,43 +193,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Threshold Section -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📺 THRESHOLD ALERT"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
 
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan Minimum" android:textColor="@color/text_primary" android:textStyle="bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="7.000 V" android:textColor="@color/neon_red" android:textStyle="bold" />
-                    </RelativeLayout>
-
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baterai Minimum" android:textColor="@color/text_primary" android:textStyle="bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="20%" android:textColor="@color/neon_yellow" android:textStyle="bold" />
-                    </RelativeLayout>
-
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sentuhan Threshold" android:textColor="@color/text_primary" android:textStyle="bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="3x / 10 menit" android:textColor="@color/neon_red" android:textStyle="bold" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <!-- WiFi Status Section -->
             <androidx.cardview.widget.CardView
