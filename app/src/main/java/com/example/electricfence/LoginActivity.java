@@ -37,9 +37,6 @@ public class LoginActivity extends AppCompatActivity {
             loginUser(email, password);
         });
 
-        findViewById(R.id.tv_register).setOnClickListener(v -> {
-            Toast.makeText(this, "Please contact administrator for access.", Toast.LENGTH_LONG).show();
-        });
     }
 
     private void loginUser(String email, String password) {

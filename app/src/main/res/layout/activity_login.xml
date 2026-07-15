@@ -48,6 +48,7 @@
                 android:textColor="@color/text_primary"
                 android:textSize="28sp"
                 android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/logo_card" />
@@ -59,6 +60,7 @@
                 android:text="@string/login_subtitle"
                 android:textColor="@color/text_secondary"
                 android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -70,8 +72,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
                 app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
                 app:layout_constraintVertical_bias="0.0">
@@ -89,7 +91,8 @@
                         android:text="@string/login_card_title"
                         android:textColor="@color/text_primary"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -158,31 +161,12 @@
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
                         app:backgroundTint="@color/neon_blue"
-                        app:cornerRadius="12dp"
+                        app:cornerRadius="28dp"
                         app:elevation="4dp" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="24dp"
-                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/not_have_account"
-                            android:textColor="@color/text_secondary" />
-
-                        <TextView
-                            android:id="@+id/tv_register"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/register_now"
-                            android:textColor="@color/neon_blue"
-                            android:textStyle="bold" />
-                    </LinearLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

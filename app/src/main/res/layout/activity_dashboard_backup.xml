@@ -69,10 +69,7 @@
         android:layout_height="0dp"
         android:scrollbars="none"
         android:overScrollMode="never"
-        android:clipToPadding="false"
-        android:paddingBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintTop_toBottomOf="@id/header">
 
         <LinearLayout
@@ -572,80 +569,60 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Floating Bottom Navigation -->
-    <com.google.android.material.card.MaterialCardView
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="24dp"
-        app:cardBackgroundColor="@color/card_bg"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="16dp"
-        app:strokeWidth="0dp"
+        android:layout_height="70dp"
+        android:background="@color/card_bg"
+        android:elevation="16dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingHorizontal="8dp">
-
-            <LinearLayout android:id="@+id/nav_home"
-                android:layout_width="0dp" android:layout_height="match_parent"
-                android:layout_weight="1" android:gravity="center" android:orientation="vertical"
-                android:background="?attr/selectableItemBackgroundBorderless">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_today" app:tint="@color/neon_blue" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Dashboard" android:textColor="@color/neon_blue" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-medium"/>
-            </LinearLayout>
-
-            <LinearLayout android:id="@+id/nav_voltage"
-                android:layout_width="0dp" android:layout_height="match_parent"
-                android:layout_weight="1" android:gravity="center" android:orientation="vertical"
-                android:background="?attr/selectableItemBackgroundBorderless">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/text_secondary" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Monitoring" android:textColor="@color/text_secondary" android:textSize="10sp" android:fontFamily="sans-serif-medium"/>
-            </LinearLayout>
-
-            <LinearLayout android:id="@+id/nav_gps"
-                android:layout_width="0dp" android:layout_height="match_parent"
-                android:layout_weight="1" android:gravity="center" android:orientation="vertical"
-                android:background="?attr/selectableItemBackgroundBorderless">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                    android:src="@android:drawable/ic_dialog_map" app:tint="@color/text_secondary" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Lokasi" android:textColor="@color/text_secondary" android:textSize="10sp" android:fontFamily="sans-serif-medium"/>
-            </LinearLayout>
-
-            <LinearLayout android:id="@+id/btn_notifications"
-                android:layout_width="0dp" android:layout_height="match_parent"
-                android:layout_weight="1" android:gravity="center" android:orientation="vertical"
-                android:background="?attr/selectableItemBackgroundBorderless">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                    android:src="@android:drawable/ic_popup_reminder" app:tint="@color/text_secondary" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Notifikasi" android:textColor="@color/text_secondary" android:textSize="10sp" android:fontFamily="sans-serif-medium"/>
-            </LinearLayout>
-
-            <LinearLayout android:id="@+id/nav_settings"
-                android:layout_width="0dp" android:layout_height="match_parent"
-                android:layout_weight="1" android:gravity="center" android:orientation="vertical"
-                android:background="?attr/selectableItemBackgroundBorderless">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_preferences" app:tint="@color/text_secondary" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Sistem" android:textColor="@color/text_secondary" android:textSize="10sp" android:fontFamily="sans-serif-medium"/>
-            </LinearLayout>
+        <LinearLayout android:id="@+id/nav_home"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_today" app:tint="@color/neon_blue" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Dashboard" android:textColor="@color/neon_blue" android:textSize="10sp" android:textStyle="bold"/>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout android:id="@+id/nav_voltage"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_sort_by_size" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Monitoring" android:textColor="@color/text_secondary" android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/nav_gps"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_dialog_map" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Lokasi" android:textColor="@color/text_secondary" android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/btn_notifications"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_popup_reminder" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Notifikasi" android:textColor="@color/text_secondary" android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/nav_settings"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_preferences" app:tint="@color/text_secondary" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Sistem" android:textColor="@color/text_secondary" android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
